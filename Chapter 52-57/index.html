@@ -5,227 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVENTS</title>
-    <style>
-        .row{
-            display: flex;
-        }
-        .row>.column {
-            padding: 0 8px;
-        }
-
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Create four equal columns that floats next to eachother */
-        .column {
-            float: left;
-            width: 25%;
-        }
-
-        /* The Modal (background) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: black;
-        }
-
-        /* Modal Content */
-        .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            width: 90%;
-            max-width: 1200px;
-        }
-
-        /* The Close Button */
-        .close {
-            color: white;
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #999;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Hide the slides by default */
-        .mySlides {
-            display: none;
-        }
-
-        /* Next & previous buttons */
-        .prev,
-        .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -50px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover,
-        .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Number text (1/3 etc) */
-        .numbertext {
-            color: #f2f2f2;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-        }
-
-        /* Caption text */
-        .caption-container {
-            text-align: center;
-            background-color: black;
-            padding: 2px 16px;
-            color: white;
-        }
-
-        img.demo {
-            opacity: 0.6;
-        }
-
-        .active,
-        .demo:hover {
-            opacity: 1;
-        }
-
-        img.hover-shadow {
-            transition: 0.3s;
-        }
-
-        .hover-shadow:hover {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="row">
-        <div class="column">
-            <img src="images/1.jpg" height="200px" width="230px" onclick="openModal();currentSlide(1)"
-                class="hover-shadow">
-        </div>
-        <div class="column">
-            <img src="images/6.jpg" height="200px" width="230px" onclick="openModal();currentSlide(2)"
-                class="hover-shadow">
-        </div>
-        <div class="column">
-            <img src="images/3.jpg" height="200px" width="230px" onclick="openModal();currentSlide(3)"
-                class="hover-shadow">
-        </div>
-        <div class="column">
-            <img src="images/4.png" height="200px" width="230px" onclick="openModal();currentSlide(4)"
-                class="hover-shadow">
-        </div>
-        <div class="column">
-            <img src="images/5.jpg" height="200px" width="230px" onclick="openModal();currentSlide(4)"
-                class="hover-shadow">
+
+    <div class="container">
+        <img onclick="showImage(this)" data-toggle="modal" data-target="#exampleModal" class="img" src="images/1.jpg"
+            alt="">
+        <img onclick="showImage(this)" data-toggle="modal" data-target="#exampleModal" class="img" src="images/3.jpg"
+            alt="">
+        <img onclick="showImage(this)" data-toggle="modal" data-target="#exampleModal" class="img" src="images/4.png"
+            alt="">
+        <img onclick="showImage(this)" data-toggle="modal" data-target="#exampleModal" class="img" src="images/5.jpg"
+            alt="">
+        <img onclick="showImage(this)" data-toggle="modal" data-target="#exampleModal" class="img" src="images/6.jpg"
+            alt="">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" class="modal_Image" src="" alt="">
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- The Modal/Lightbox -->
-    <div id="myModal" class="modal">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-
-            <div class="mySlides">
-                <div class="numbertext">1 / 5</div>
-                <img src="images/1.jpg" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <div class="numbertext">2 / 5</div>
-                <img src="images/6.jpg" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <div class="numbertext">3 / 5</div>
-                <img src="images/3.jpg" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <div class="numbertext">4 / 5</div>
-                <img src="images/4.png" style="width:100%">
-            </div>
-
-            <div class="mySlides">
-                <div class="numbertext">5 / 5</div>
-                <img src="images/5.jpg" style="width:100%">
-            </div>
-
-            <!-- Next/previous controls -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <!-- Caption text -->
-            <div class="caption-container">
-                <p id="caption"></p>
-            </div>
-
-            <!-- Thumbnail image controls -->
-            <div class="column">
-                <img class="demo" src="images/1.jpg" onclick="currentSlide(1)" alt="Nature">
-            </div>
-
-            <div class="column">
-                <img class="demo" src="images/6.jpg" onclick="currentSlide(2)" alt="Snow">
-            </div>
-
-            <div class="column">
-                <img class="demo" src="images/3.jpg" onclick="currentSlide(3)" alt="Mountains">
-            </div>
-
-            <div class="column">
-                <img class="demo" src="images/4.png" onclick="currentSlide(4)" alt="Lights">
-            </div>
-
-            <div class="column">
-                <img class="demo" src="images/5.jpg" onclick="currentSlide(5)" alt="Lights">
-            </div>
-        </div>
-    </div>
-    <br>
-
-
-
+    <br> <br>
     <div style="text-align: center;">
         <p id="para">Saylani Welfare International Trust is a Pakistani charity focusing primarily on feeding the
             homeless. It was
@@ -235,11 +53,21 @@
             to more than 30,000 poor people through its 100 centers (generally known as Dastar-Khawan), most of them are
             serving in Karachi. The organization distributed CNG rickshaws among the jobless citizens of Karachi
             in April, 2011 with the help of members of the Karachi business community.</p>
-        <button style="width: 20%;height: 30px;font-size: large;" onclick="zoomIn()" id="zoomin">Zoom In (+)</button>
-        <button style="width: 20%;height: 30px;font-size: large;" onclick="zoomOut()" id="zoomout">Zoom Out (-)</button>
+        <button style="width: 20%;height: 40px;font-size: large;" onclick="zoomIn()" class="btn btn-secondary" id="zoomin">Zoom In (+)</button>
+        <button style="width: 21%;height: 40px;font-size: large;" onclick="zoomOut()" class="btn btn-secondary" id="zoomout">Zoom Out (-)</button>
     </div>
 
     <script src="app.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
